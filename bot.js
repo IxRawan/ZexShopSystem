@@ -200,7 +200,7 @@ client.user.setStatus("dnd")
 
 
 client.on('message', msg => {
-  if (msg.author.bot) return;
+  if (msg.author.bot);
   if (!msg.content.startsWith(prefix)) return;
   let command = msg.content.split(" ")[0];
   command = command.slice(prefix.length);
@@ -239,7 +239,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "s")) {
+    } else if(message.content.startsWith("+s")) {
                 if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الشي الي تبيه حالة البوت.');
         client.user.setGame(args , 'https://twitch.tv/IxRawan_');
@@ -247,7 +247,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "p")) {
+    } else if(message.content.startsWith("+p")) {
                         if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الشي الي تبيه حالة البوت.');
         client.user.setGame(args);
@@ -255,7 +255,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "l")) {
+    } else if(message.content.startsWith("+l")) {
                         if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الشي الي تبيه حالة البوت.');
         client.user.setActivity(args, {type:'LISTENING'});
@@ -263,7 +263,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "w")) {
+    } else if(message.content.startsWith("+w")) {
                         if(message.author.id !== myID) return;
             if(!args) return message.reply('اكتب الشي الي تبيه حالة البوت.');
         client.user.setActivity(args, {type:'WATCHING'});
@@ -271,7 +271,7 @@ client.on('message', function(message) {
            msg.delete(5000);
           message.delete(5000);
         });
-    } else if(message.content.startsWith(prefix + "setavatar")) {
+    } else if(message.content.startsWith("+setavatar")) {
                         if(message.author.id !== myID) return;
         client.user.setAvatar(args);
         message.channel.send(':white_check_mark: Done!').then(msg => {
@@ -656,4 +656,4 @@ client.on("message", (message) => {
 
 
 
-client.login("NTQ3ODQ4NzAwNDcxNDEwNzA4.D08vfw.gbDAezc4Ot_1Pw9lHKuoMVVj_3c");
+client.login(process.env.BOT_TOKEN);
