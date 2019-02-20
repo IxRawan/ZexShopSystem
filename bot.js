@@ -64,7 +64,7 @@ client.on('message', message => {
 ❖ +ban <user> <reason> \ لأعطاء بان لشي عضو
 ❖ +mute <user> <reason> \ لأعطاء ميوت لشي عضو
 ❖ +unmute <user> \ لفك الميوت من شي عضو
-❖ +clear \ لمسح 100 رسالة
+❖ +clear <number>\ لمسح رسائل بعدد
 ❖ +hchannel \ لأخفاء الروم ملاحظة الروم الي تبي تخفيه لازم تستخد الامر جواته
 ❖ +schannel \ لأظهار الروم ملاحظة الروم الي تبيه تعمله اظهار لازم تستخد الامر جواته
 ❖ +move <user> \ لأسحاب اي شخص لروم الي انت فيه
@@ -199,52 +199,29 @@ client.user.setStatus("dnd")
 });
 
 
+client.on('message', msg => {
+  if (msg.author.bot) return message.channel.send('مفكر اني غبي وباخد الامر من بوت ؟؟');
+  if (!msg.content.startsWith(prefix)) return;
+  let command = msg.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = msg.content.split(" ").slice(1);
 
-
-
-
-                        
-                        client.on('message', message => {
-                            var prefix = "E#";
-                           if(!message.channel.guild) return;
-                        if(message.content.startsWith(prefix + 'clear')) {
-                        if(!message.channel.guild) return;
-                        if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**لا تمتلك الصلاحية `MANAGE_MESSAGES`**' );
-                        let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-                        let request = `تم المسح من قبل ${message.author.username}`;
-                        message.channel.send(`**هل انت متأكد؟**`).then(msg => {
-                        msg.react('✅')
-                        .then(() => msg.react('❌'))
-                        .then(() =>msg.react('✅'))
-                        
-                        let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-                        let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-                        
-                        let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-                        let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-                        reaction1.on("collect", r => {
-                        message.channel.send(`الرجاء انتظار...`).then(m => m.delete(5000));
-                        var msg;
-                                msg = parseInt();
-                        
-                              message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-                              message.channel.sendMessage("", {embed: {
-                                title: "`` تم الحذف ``",
-                                color: 0x06DF00,
-                                footer: {
-                        
-                                }
-                              }}).then(msg => {msg.delete(3000)});
-                        
-                        })
-                        reaction2.on("collect", r => {
-                        message.channel.send(`**تم الغاء الامر**`).then(m => m.delete(5000));
-                        msg.delete();
-                        })
-                        })
-                        }
-                        });
-
+    if(command === "clear") {
+        const emoji = client.emojis.find("name", "wastebasket")
+    let textxt = args.slice(0).join("");
+    if(msg.member.hasPermission("MANAGE_MESSAGES")) {
+    if (textxt == "") {
+        msg.delete().then
+    msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها ```***").then(m => m.delete(3000));
+} else {
+    msg.delete().then
+    msg.delete().then
+    msg.channel.bulkDelete(textxt);
+        msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
+        }    
+    }
+}
+});
 
 
 
